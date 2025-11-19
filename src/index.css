@@ -1,0 +1,109 @@
+/* Tailwind CSS Directives */
+/* css-lint-disable */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* css-lint-enable */
+
+/* Premium Legal Theme Styles */
+:root {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar for premium feel */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Premium animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.5s ease-out;
+}
+
+/* Legal-specific utilities */
+.line-clamp-2 {
+  display: -webkit-box;
+  display: box;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  display: box;
+  line-clamp: 3;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Premium focus states */
+.focus\:ring-lexiom-primary:focus {
+  --tw-ring-color: #1A2E40;
+  --tw-ring-opacity: 0.5;
+}
+
+/* Premium hover effects */
+.hover\:shadow-lexiom:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.hover\:shadow-lexiom-lg:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+}
+
+.hover\:shadow-lexiom-xl:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.16);
+}
+
+/* Drag and drop styles */
+.dragging {
+  opacity: 0.5;
+  transform: rotate(2deg);
+}
+
+.drop-zone {
+  border: 2px dashed #c1c1c1;
+  background-color: #f9f9f9;
+}
+
+.drop-zone-active {
+  border-color: #1A2E40;
+  background-color: #f0f4f8;
+}
