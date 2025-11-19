@@ -1477,6 +1477,17 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'healthy', timestamp: new Date().toISOString() });
 });
 
+// Client error reporting
+app.post('/api/errors', async (req, res) => {
+  try {
+    const body = req.body as { message?: string; stack?: string; url?: string; userAgent?: string };
+    console.error('Client error:', body?.message || 'unknown');
+    res.json({ ok: true });
+  } catch {
+    res.status(500).json({ error: 'Error reporting client error' });
+  }
+});
+
 // Audit logs endpoints
 app.get('/api/audit-logs', authenticateAdmin, authorize(['audit:read']), async (req, res) => {
   try {
