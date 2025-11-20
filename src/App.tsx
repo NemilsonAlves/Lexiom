@@ -33,13 +33,18 @@ export default function App() {
   const basename = import.meta.env.BASE_URL || "/";
 
   React.useEffect(() => {
+    const rawAdminBase = (import.meta as unknown as { env?: Record<string, string> }).env?.VITE_ADMIN_API_URL || 'http://localhost:3001/api';
+    const adminBase = (() => {
+      const trimmed = rawAdminBase.replace(/\/+$/, '');
+      return trimmed.endsWith('/api') ? trimmed : `${trimmed}/api`;
+    })();
     const report = (payload: Record<string, unknown>) => {
       try {
         const blob = new Blob([JSON.stringify(payload)], { type: "application/json" });
         if (navigator.sendBeacon) {
-          navigator.sendBeacon("/api/errors", blob);
+          navigator.sendBeacon(`${adminBase}/errors`, blob);
         } else {
-          void fetch("/api/errors", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+          void fetch(`${adminBase}/errors`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
         }
       } catch { void 0; }
     };

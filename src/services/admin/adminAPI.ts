@@ -165,7 +165,9 @@ class AdminAPIService {
   private token: string | null = null;
 
   constructor() {
-    this.baseURL = import.meta.env.VITE_ADMIN_API_URL || 'http://localhost:3001/api';
+    const raw = import.meta.env.VITE_ADMIN_API_URL || 'http://localhost:3001/api';
+    const trimmed = raw.replace(/\/+$/, '');
+    this.baseURL = trimmed.endsWith('/api') ? trimmed : `${trimmed}/api`;
     this.token = localStorage.getItem('admin_token');
   }
 
